@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Inventory Scanner</string>
+    <string name="scan">Scan</string>
+    <string name="title_activity_android_barcode_qr_example">AndroidBarcodeQrExample</string>
+</resources>
