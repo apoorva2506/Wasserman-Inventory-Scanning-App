@@ -25,7 +25,7 @@ public class ShowDetails extends AppCompatActivity {
 
     ListView listView;
     TextView result;
-    Button surveybtn, checkinbtn;
+    Button surveybtn, checkinbtn, updatebtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class ShowDetails extends AppCompatActivity {
         result = (TextView) findViewById(R.id.textView);
         surveybtn= (Button) findViewById(R.id.button);
         checkinbtn= (Button) findViewById(R.id.button4);
+        updatebtn= (Button) findViewById(R.id.button7);
 
         getJSON("http://128.122.45.11/scanapp/test.php?serialno="+str);
 
@@ -98,8 +99,8 @@ public class ShowDetails extends AppCompatActivity {
 
             final String sno= obj.getString("serial_no");
             String iname= obj.getString("item_name");
-            String location= obj.getString("location");
-            String staff= obj.getString("staff");
+            final String location= obj.getString("location");
+            final String staff= obj.getString("staff");
 
             result.setText(" Serial Number -"+sno+"\n Name -"+iname+"\n Location -"+location+"\n Staff -"+staff);
 
@@ -117,6 +118,17 @@ public class ShowDetails extends AppCompatActivity {
                     // Perform action on click
                     Intent i = new Intent(ShowDetails.this, CheckinActivity.class);
                     i.putExtra("serno1",sno);
+                    ShowDetails.this.startActivity(i);
+                }
+            });
+
+            updatebtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    // Perform action on click
+                    Intent i = new Intent(ShowDetails.this, Update.class);
+                    i.putExtra("serno1",sno);
+                    i.putExtra("locs",location);
+                    i.putExtra("staf",staff);
                     ShowDetails.this.startActivity(i);
                 }
             });
